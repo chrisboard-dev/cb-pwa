@@ -2,96 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- NO SCROLL + NO ZOOM -->
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
   <title>Chris Board</title>
 
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#1F2933" />
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1F2933">
 
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Chris Board" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Chris Board">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <link rel="apple-touch-icon" sizes="180x180" href="assets/ios/apple-touch-icon-180.png">
   <link rel="apple-touch-icon" sizes="167x167" href="assets/ios/apple-touch-icon-167.png">
   <link rel="apple-touch-icon" sizes="152x152" href="assets/ios/apple-touch-icon-152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="assets/ios/apple-touch-icon-120.png">
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <main class="app">
 
-    <section id="installScreen" class="screen" aria-hidden="true">
+    <!-- INSTALL SCREEN -->
+    <section id="installScreen" class="screen">
       <div class="content">
-        <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board" />
 
-        <p class="helper">Installation is required to continue.</p>
+        <div class="logoWrap">
+          <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board">
+        </div>
+
+        <p class="installNote">Install required to continue.</p>
 
         <div class="card" id="iosCard" hidden>
-          <h2 class="cardTitle">📱 Install on iPhone</h2>
-          <ol class="steps">
-            <li>Open this page in <strong>Safari</strong></li>
-            <li>Tap the <strong>Share</strong> icon (⬆︎)</li>
-            <li>Select <strong>“Add to Home Screen”</strong></li>
-            <li>Open from <strong>Home Screen</strong></li>
-          </ol>
+          <h2 class="cardTitle">Install on iPhone</h2>
 
-          <div class="callout">
-            <span class="calloutIcon">ℹ️</span>
-            <span>Tip: If you are using Chrome, copy the link and open it in Safari.</span>
+          <div class="instructionBox">
+            <ol class="steps">
+              <li>Open this page in Safari</li>
+              <li>Tap the Share icon (⬆︎)</li>
+              <li>Select “Add to Home Screen”</li>
+              <li>Open from Home Screen</li>
+            </ol>
           </div>
         </div>
 
         <div class="card" id="androidCard" hidden>
-          <h2 class="cardTitle">🤖 Install on Android</h2>
-          <ol class="steps">
-            <li>Tap <strong>“Install App”</strong> below</li>
-            <li>Confirm the install prompt</li>
-            <li>Open from your <strong>Home Screen</strong></li>
-          </ol>
+          <h2 class="cardTitle">Install on Android</h2>
 
-          <button class="btn" id="installBtn" type="button" disabled>Install App</button>
-          <p id="installHint" class="hint" hidden>
-            Install prompt isn’t available yet. Use Chrome/Edge on Android and refresh.
-          </p>
-
-          <div class="callout">
-            <span class="calloutIcon">🔒</span>
-            <span>This helps keep access consistent and reliable on mobile devices.</span>
+          <div class="instructionBox">
+            <ol class="steps">
+              <li>Tap “Install App” below</li>
+              <li>Confirm install</li>
+              <li>Open from Home Screen</li>
+            </ol>
           </div>
+
+          <button class="btn" id="installBtn" type="button" disabled>
+            Install App
+          </button>
         </div>
+
       </div>
 
-      <!-- Footer must have class footer -->
       <footer class="footer">© 2025 Chris Board</footer>
     </section>
 
-    <section id="loginScreen" class="screen" aria-hidden="true">
+    <!-- LOGIN SCREEN -->
+    <section id="loginScreen" class="screen">
       <div class="content">
-        <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board" />
+
+        <div class="logoWrap">
+          <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board">
+        </div>
 
         <div class="card">
-          <h2 class="cardTitle">🔑 Login</h2>
+          <h2 class="cardTitle">Login</h2>
 
           <label class="field">
             <span>Username</span>
-            <input type="text" placeholder="Enter username" autocomplete="username" />
+            <input type="text">
           </label>
 
           <label class="field">
             <span>Password</span>
-            <input type="password" placeholder="Enter password" autocomplete="current-password" />
+            <input type="password">
           </label>
 
-          <button class="btn" type="button" id="loginBtn">Login</button>
-          <p class="hint">(Preview only) Auth will be connected later.</p>
+          <button class="btn" type="button">Login</button>
         </div>
+
       </div>
 
       <footer class="footer">© 2025 Chris Board</footer>
