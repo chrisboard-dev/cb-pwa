@@ -1,91 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chris Board</title>
 
+  <!-- Inter font (enterprise standard) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- PWA -->
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1F2933">
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#1F2933" />
 
   <!-- iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Chris Board">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Chris Board" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="assets/ios/apple-touch-icon-180.png">
   <link rel="apple-touch-icon" sizes="167x167" href="assets/ios/apple-touch-icon-167.png">
   <link rel="apple-touch-icon" sizes="152x152" href="assets/ios/apple-touch-icon-152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="assets/ios/apple-touch-icon-120.png">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-<main class="app">
+  <main class="app">
 
-  <!-- INSTALL SCREEN -->
-  <section id="installScreen" class="screen">
-    <div class="content">
-      <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board">
+    <!-- INSTALL SCREEN (mobile browser only) -->
+    <section id="installScreen" class="screen" aria-hidden="true">
+      <div class="content">
+        <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board" />
 
-      <p class="helper">Installation is required to continue.</p>
+        <p class="helper">Installation is required to continue.</p>
 
-      <!-- iOS -->
-      <div class="card" id="iosCard" hidden>
-        <h2>Install on iPhone</h2>
-        <ol>
-          <li>Open this page in Safari</li>
-          <li>Tap the Share icon</li>
-          <li>Select “Add to Home Screen”</li>
-          <li>Open from Home Screen</li>
-        </ol>
+        <!-- iOS card -->
+        <div class="card" id="iosCard" hidden>
+          <h2 class="cardTitle">📱 Install on iPhone</h2>
+
+          <ol class="steps">
+            <li>Open this page in <strong>Safari</strong></li>
+            <li>Tap the <strong>Share</strong> icon (⬆︎)</li>
+            <li>Select <strong>“Add to Home Screen”</strong></li>
+            <li>Open from <strong>Home Screen</strong></li>
+          </ol>
+
+          <div class="callout">
+            <span class="calloutIcon">ℹ️</span>
+            <span>Tip: If you are using Chrome, copy the link and open it in Safari.</span>
+          </div>
+        </div>
+
+        <!-- Android card -->
+        <div class="card" id="androidCard" hidden>
+          <h2 class="cardTitle">🤖 Install on Android</h2>
+
+          <ol class="steps">
+            <li>Tap <strong>“Install App”</strong> below</li>
+            <li>Confirm the install prompt</li>
+            <li>Open from your <strong>Home Screen</strong></li>
+          </ol>
+
+          <button class="btn" id="installBtn" type="button" disabled>
+            Install App
+          </button>
+
+          <p id="installHint" class="hint" hidden>
+            Install prompt isn’t available yet. Use Chrome/Edge on Android and refresh.
+          </p>
+
+          <div class="callout">
+            <span class="calloutIcon">🔒</span>
+            <span>This helps keep access consistent and reliable on mobile devices.</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Android -->
-      <div class="card" id="androidCard" hidden>
-        <h2>Install on Android</h2>
-        <ol>
-          <li>Tap “Install App” below</li>
-          <li>Confirm install</li>
-          <li>Open from Home Screen</li>
-        </ol>
-        <button id="installBtn" disabled>Install App</button>
-        <p id="installHint" class="hint" hidden>Install not available yet.</p>
+      <footer class="footer">© 2025 Chris Board</footer>
+    </section>
+
+    <!-- LOGIN SCREEN (desktop browser + mobile standalone PWA) -->
+    <section id="loginScreen" class="screen" aria-hidden="true">
+      <div class="content">
+        <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board" />
+
+        <div class="card">
+          <h2 class="cardTitle">🔑 Login</h2>
+
+          <!-- Not a real form yet. Avoid submit issues. -->
+          <label class="field">
+            <span>Username</span>
+            <input type="text" placeholder="Enter username" autocomplete="username" />
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input type="password" placeholder="Enter password" autocomplete="current-password" />
+          </label>
+
+          <button class="btn" type="button" id="loginBtn">Login</button>
+
+          <p class="hint">(Preview only) Auth will be connected later.</p>
+        </div>
       </div>
-    </div>
 
-    <footer>© 2025 Chris Board</footer>
-  </section>
+      <footer class="footer">© 2025 Chris Board</footer>
+    </section>
 
-  <!-- LOGIN SCREEN -->
-  <section id="loginScreen" class="screen">
-    <div class="content">
-      <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board">
+  </main>
 
-      <div class="card">
-        <h2>Login</h2>
-
-        <label>
-          Username
-          <input type="text">
-        </label>
-
-        <label>
-          Password
-          <input type="password">
-        </label>
-
-        <button>Login</button>
-      </div>
-    </div>
-
-    <footer>© 2025 Chris Board</footer>
-  </section>
-
-</main>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
