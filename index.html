@@ -5,16 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chris Board</title>
 
-  <!-- Inter font (enterprise standard) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- PWA -->
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#1F2933" />
 
-  <!-- iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Chris Board" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -30,17 +27,14 @@
 <body>
   <main class="app">
 
-    <!-- INSTALL SCREEN (mobile browser only) -->
     <section id="installScreen" class="screen" aria-hidden="true">
       <div class="content">
         <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board" />
 
         <p class="helper">Installation is required to continue.</p>
 
-        <!-- iOS card -->
         <div class="card" id="iosCard" hidden>
           <h2 class="cardTitle">📱 Install on iPhone</h2>
-
           <ol class="steps">
             <li>Open this page in <strong>Safari</strong></li>
             <li>Tap the <strong>Share</strong> icon (⬆︎)</li>
@@ -54,20 +48,15 @@
           </div>
         </div>
 
-        <!-- Android card -->
         <div class="card" id="androidCard" hidden>
           <h2 class="cardTitle">🤖 Install on Android</h2>
-
           <ol class="steps">
             <li>Tap <strong>“Install App”</strong> below</li>
             <li>Confirm the install prompt</li>
             <li>Open from your <strong>Home Screen</strong></li>
           </ol>
 
-          <button class="btn" id="installBtn" type="button" disabled>
-            Install App
-          </button>
-
+          <button class="btn" id="installBtn" type="button" disabled>Install App</button>
           <p id="installHint" class="hint" hidden>
             Install prompt isn’t available yet. Use Chrome/Edge on Android and refresh.
           </p>
@@ -79,10 +68,10 @@
         </div>
       </div>
 
+      <!-- Footer must have class footer -->
       <footer class="footer">© 2025 Chris Board</footer>
     </section>
 
-    <!-- LOGIN SCREEN (desktop browser + mobile standalone PWA) -->
     <section id="loginScreen" class="screen" aria-hidden="true">
       <div class="content">
         <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board" />
@@ -90,7 +79,6 @@
         <div class="card">
           <h2 class="cardTitle">🔑 Login</h2>
 
-          <!-- Not a real form yet. Avoid submit issues. -->
           <label class="field">
             <span>Username</span>
             <input type="text" placeholder="Enter username" autocomplete="username" />
@@ -102,7 +90,6 @@
           </label>
 
           <button class="btn" type="button" id="loginBtn">Login</button>
-
           <p class="hint">(Preview only) Auth will be connected later.</p>
         </div>
       </div>

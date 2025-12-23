@@ -24,32 +24,45 @@ body{
   background: var(--bg);
 }
 
-/* Subtle pattern background */
+/* Subtle SVG pattern background */
 .app{
   min-height: 100vh;
   background:
     url("assets/bg/cbbackground.svg") repeat,
     var(--bg);
   background-blend-mode: multiply;
+
+  /* ✅ background “zoomed out” → pattern objects smaller */
+  background-size: 220px auto; /* tweak: 180–280px */
 }
 
-/* Fade the pattern subtly (increase opacity to fade more) */
+/* Fade pattern subtly */
 .app::before{
   content:"";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background: var(--bg);
-  opacity: 0.14; /* tweak 0.10 - 0.22 depending on pattern strength */
+  opacity: 0.18; /* tweak: 0.14–0.22 depending on pattern strength */
 }
 
 .screen{
-  min-height: 100vh;
-  display: none;       /* JS will switch this */
+  min-height: 100dvh;
+  display: none;
   flex-direction: column;
   padding: 28px 18px 18px;
 }
 
+/* ✅ ONLY install screen: centered + not scrollable */
+#installScreen{
+  height: 100dvh;
+  overflow: hidden;            /* no scroll (install only) */
+  justify-content: center;     /* vertical center */
+  align-items: center;         /* horizontal center */
+  padding: 24px 18px 70px;     /* bottom space so footer never overlaps */
+}
+
+/* Content container */
 .content{
   width: 100%;
   max-width: 440px;
@@ -58,16 +71,16 @@ body{
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding-top: 20px;
 }
 
-/* Bigger logo (your request) */
+/* ✅ Bigger logo */
 .logo{
-  width: 132px;
+  width: 160px;
+  max-width: 70vw;
   height: auto;
   display: block;
   margin-top: 6px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .helper{
@@ -85,6 +98,11 @@ body{
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 20px 22px;
+}
+
+/* small spacing lift for install screen balance */
+#installScreen .card{
+  margin-top: 6px;
 }
 
 .cardTitle{
@@ -110,6 +128,11 @@ body{
 
 .steps li:last-child{
   margin-bottom: 0;
+}
+
+.steps li::marker{
+  font-weight: 600;
+  color: #9CA3AF;
 }
 
 .btn{
@@ -173,8 +196,8 @@ body{
   align-items: flex-start;
   padding: 12px 12px;
   border-radius: 12px;
-  background: rgba(17, 24, 39, 0.03);
-  border: 1px dashed rgba(17, 24, 39, 0.12);
+  background: rgba(17, 24, 39, 0.02);
+  border: 1px solid rgba(17, 24, 39, 0.08);
   color: #374151;
   font-size: 13px;
   line-height: 1.45;
@@ -185,10 +208,14 @@ body{
   margin-top: 1px;
 }
 
+/* ✅ Footer visible (fixed). If you want ONLY on install, tell me. */
 .footer{
-  margin-top: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 14px;
   text-align: center;
   font-size: 12px;
   color: rgba(107, 114, 128, 0.95);
-  padding-top: 18px;
+  pointer-events: none;
 }
