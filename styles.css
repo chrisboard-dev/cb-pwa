@@ -1,221 +1,137 @@
-:root{
-  --bg: #F3F4F6;
-  --text: #111827;
-  --muted: #4B5563;
-  --muted2: #6B7280;
+* { box-sizing: border-box; }
 
-  --card: #FFFFFF;
-  --border: rgba(17, 24, 39, 0.10);
-  --shadow: 0 12px 24px rgba(17, 24, 39, 0.08);
-
-  --radius: 16px;
-
-  --btn: #2563EB;
-  --btnText: #FFFFFF;
-}
-
-*{ box-sizing: border-box; }
-html, body{ height: 100%; }
-
-body{
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--text);
-  background: var(--bg);
+  overflow: hidden;              /* NO SCROLL */
 }
 
-/* Subtle SVG pattern background */
-.app{
-  min-height: 100vh;
-  background:
-    url("assets/bg/cbbackground.svg") repeat,
-    var(--bg);
-  background-blend-mode: multiply;
-
-  /* ✅ background “zoomed out” → pattern objects smaller */
-  background-size: 220px auto; /* tweak: 180–280px */
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background: #F3F4F6;
+  touch-action: none;            /* NO ZOOM / NO PAN */
 }
 
-/* Fade pattern subtly */
-.app::before{
-  content:"";
+.app {
   position: fixed;
   inset: 0;
-  pointer-events: none;
-  background: var(--bg);
-  opacity: 0.18; /* tweak: 0.14–0.22 depending on pattern strength */
+  background:
+    url("assets/bg/cbbackground.svg") repeat,
+    #F3F4F6;
+  background-size: 280px auto;
 }
 
-.screen{
-  min-height: 100dvh;
+/* Screens are fixed overlays */
+.screen {
+  position: fixed;
+  inset: 0;
   display: none;
   flex-direction: column;
-  padding: 28px 18px 18px;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 18px 88px;
 }
 
-/* ✅ ONLY install screen: centered + not scrollable */
-#installScreen{
-  height: 100dvh;
-  overflow: hidden;            /* no scroll (install only) */
-  justify-content: center;     /* vertical center */
-  align-items: center;         /* horizontal center */
-  padding: 24px 18px 70px;     /* bottom space so footer never overlaps */
-}
-
-/* Content container */
-.content{
+/* Center content */
+.content {
   width: 100%;
   max-width: 440px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
-/* ✅ Bigger logo */
-.logo{
-  width: 160px;
-  max-width: 70vw;
-  height: auto;
-  display: block;
-  margin-top: 6px;
-  margin-bottom: 14px;
-}
-
-.helper{
-  margin: 0;
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 500;
-  text-align: center;
-}
-
-.card{
+/* Logo same width as card */
+.logoWrap {
   width: 100%;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 20px 22px;
 }
 
-/* small spacing lift for install screen balance */
-#installScreen .card{
-  margin-top: 6px;
+.logo {
+  width: 100%;
+  height: auto;
 }
 
-.cardTitle{
-  margin: 0 0 14px;
+/* Faded text */
+.installNote {
+  font-size: 13px;
+  color: rgba(17,24,39,.45);
+  margin-bottom: 8px;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 12px 24px rgba(0,0,0,.08);
+}
+
+.cardTitle {
+  margin: 0 0 10px;
+  text-align: center;
   font-size: 18px;
   font-weight: 700;
-  color: var(--text);
-  text-align: center;
-  letter-spacing: -0.2px;
 }
 
-.steps{
+/* Inner rectangle */
+.instructionBox {
+  background: #F3F4F6;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+/* Steps */
+.steps {
   margin: 0;
-  padding-left: 20px;
-  color: #374151;
+  padding-left: 18px;
   font-size: 14px;
   line-height: 1.6;
 }
 
-.steps li{
-  margin: 0 0 10px;
-}
-
-.steps li:last-child{
-  margin-bottom: 0;
-}
-
-.steps li::marker{
-  font-weight: 600;
-  color: #9CA3AF;
-}
-
-.btn{
-  width: 100%;
-  height: 48px;
-  border: none;
-  border-radius: 12px;
-  background: var(--btn);
-  color: var(--btnText);
-  font-weight: 700;
-  font-size: 16px;
-  margin-top: 14px;
-  cursor: pointer;
-}
-
-.btn:disabled{
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.hint{
-  margin: 10px 0 0;
-  font-size: 12px;
-  color: var(--muted2);
-  text-align: center;
-}
-
-.field{
+/* Inputs */
+.field {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin: 12px 0;
+  margin-bottom: 12px;
 }
 
-.field span{
-  font-size: 12px;
-  color: var(--muted2);
-  font-weight: 500;
+input {
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
 }
 
-.field input{
-  height: 46px;
-  padding: 0 12px;
+/* Button */
+.btn {
+  width: 100%;
+  height: 48px;
+  border: none;
   border-radius: 12px;
-  border: 1px solid var(--border);
-  outline: none;
-  font-size: 14px;
-  background: #fff;
+  background: #2563EB;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 12px;
 }
 
-.field input:focus{
-  border-color: rgba(37, 99, 235, 0.45);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+.btn:disabled {
+  opacity: .5;
 }
 
-.callout{
-  margin-top: 14px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  padding: 12px 12px;
-  border-radius: 12px;
-  background: rgba(17, 24, 39, 0.02);
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  color: #374151;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.calloutIcon{
-  flex: 0 0 auto;
-  margin-top: 1px;
-}
-
-/* ✅ Footer visible (fixed). If you want ONLY on install, tell me. */
-.footer{
+/* Footer */
+.footer {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 14px;
   text-align: center;
   font-size: 12px;
-  color: rgba(107, 114, 128, 0.95);
+  color: rgba(107,114,128,.9);
   pointer-events: none;
 }
