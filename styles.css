@@ -3,25 +3,28 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden;              /* NO SCROLL */
+  overflow: hidden; /* no scroll */
 }
 
 body {
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   background: #F3F4F6;
-  touch-action: none;            /* NO ZOOM / NO PAN */
+  touch-action: none;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* App background */
 .app {
   position: fixed;
   inset: 0;
   background:
     url("assets/bg/cbbackground.svg") repeat,
     #F3F4F6;
-  background-size: 280px auto;
+  background-size: 480px auto;           /* ✅ larger objects */
+  background-blend-mode: multiply;       /* ✅ lower contrast */
 }
 
-/* Screens are fixed overlays */
+/* Screens */
 .screen {
   position: fixed;
   inset: 0;
@@ -29,10 +32,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px 18px 88px;
+  padding: 34px 18px 96px;
 }
 
-/* Center content */
+/* Content stack */
 .content {
   width: 100%;
   max-width: 440px;
@@ -42,56 +45,94 @@ body {
   gap: 14px;
 }
 
-/* Logo same width as card */
-.logoWrap {
-  width: 100%;
-}
+/* Logo */
+.logoWrap { width: 100%; }
 
 .logo {
   width: 100%;
+  max-height: 108px;
   height: auto;
+  object-fit: contain;
+  display: block;
 }
 
-/* Faded text */
+/* Install note */
 .installNote {
+  margin: 2px 0 12px;
   font-size: 13px;
-  color: rgba(17,24,39,.45);
-  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: .1px;
+  color: rgba(17,24,39,.58);
+  text-align: center;
 }
 
 /* Card */
 .card {
   width: 100%;
-  background: #fff;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 12px 24px rgba(0,0,0,.08);
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(17,24,39,.10);
+  box-shadow: 0 10px 24px rgba(17,24,39,.06);
+  backdrop-filter: blur(3px);
 }
 
+/* Card title */
 .cardTitle {
-  margin: 0 0 10px;
+  margin: 0 0 14px;
   text-align: center;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.35px;
 }
 
-/* Inner rectangle */
+/* Instruction box */
 .instructionBox {
-  background: #F3F4F6;
-  border-radius: 12px;
-  padding: 12px;
-  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(243,244,246,.9);
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 14px;
+  padding: 14px;
 }
 
 /* Steps */
 .steps {
+  list-style: none;
   margin: 0;
-  padding-left: 18px;
-  font-size: 14px;
+  padding: 0;
+  font-size: 15px;
   line-height: 1.6;
+  color: rgba(55,65,81,.95);
 }
 
-/* Inputs */
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(17,24,39,.06);
+}
+
+.steps li:last-child {
+  border-bottom: none;
+}
+
+/* Vector icons */
+.icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(17,24,39,.7);
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Form fields */
 .field {
   width: 100%;
   display: flex;
@@ -100,11 +141,24 @@ body {
   margin-bottom: 12px;
 }
 
+.field span {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(107,114,128,.85);
+}
+
 input {
-  height: 44px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  padding: 0 10px;
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(17,24,39,.14);
+  padding: 0 12px;
+  font-size: 15px;
+}
+
+input:focus {
+  border-color: rgba(0,122,255,.45);
+  box-shadow: 0 0 0 3px rgba(0,122,255,.14);
+  outline: none;
 }
 
 /* Button */
@@ -112,26 +166,23 @@ input {
   width: 100%;
   height: 48px;
   border: none;
-  border-radius: 12px;
-  background: #2563EB;
+  border-radius: 14px;
+  background: #007AFF;
   color: #fff;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   margin-top: 12px;
 }
 
 .btn:disabled {
-  opacity: .5;
+  opacity: .45;
 }
 
-/* Footer */
+/* Footer (below card, large gap) */
 .footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 14px;
-  text-align: center;
+  margin-top: 48px;
   font-size: 12px;
-  color: rgba(107,114,128,.9);
-  pointer-events: none;
+  font-weight: 500;
+  color: rgba(107,114,128,.7);
+  text-align: center;
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 
-  <!-- NO SCROLL + NO ZOOM -->
+  <!-- No zoom -->
   <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 
@@ -12,21 +12,7 @@
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1F2933">
-
-  <!-- iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Chris Board">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/ios/apple-touch-icon-180.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="assets/ios/apple-touch-icon-167.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="assets/ios/apple-touch-icon-152.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="assets/ios/apple-touch-icon-120.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -42,40 +28,82 @@
           <img src="assets/logo/cblogo_t.svg" class="logo" alt="Chris Board">
         </div>
 
-        <p class="installNote">Install required to continue.</p>
+        <p class="installNote">Installation is required to continue.</p>
 
+        <!-- iOS -->
         <div class="card" id="iosCard" hidden>
           <h2 class="cardTitle">Install on iPhone</h2>
 
           <div class="instructionBox">
-            <ol class="steps">
-              <li>Open this page in Safari</li>
-              <li>Tap the Share icon (⬆︎)</li>
-              <li>Select “Add to Home Screen”</li>
-              <li>Open from Home Screen</li>
-            </ol>
+            <ul class="steps ios">
+              <li>
+                <span class="icon">
+                  <!-- Safari -->
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M12 6l2 6-6 2z" fill="currentColor"/>
+                  </svg>
+                </span>
+                Open this page in Safari
+              </li>
+
+              <li>
+                <span class="icon">
+                  <!-- Share -->
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 16V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M8 8l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    <rect x="6" y="12" width="12" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                </span>
+                Tap the Share button
+              </li>
+
+              <li>
+                <span class="icon">
+                  <!-- Plus -->
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                Select “Add to Home Screen”
+              </li>
+
+              <li>
+                <span class="icon">
+                  <!-- App -->
+                  <svg viewBox="0 0 24 24">
+                    <rect x="5" y="5" width="14" height="14" rx="3"
+                          fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                </span>
+                Open from Home Screen
+              </li>
+            </ul>
           </div>
         </div>
 
+        <!-- Android -->
         <div class="card" id="androidCard" hidden>
           <h2 class="cardTitle">Install on Android</h2>
 
           <div class="instructionBox">
-            <ol class="steps">
+            <ul class="steps">
               <li>Tap “Install App” below</li>
               <li>Confirm install</li>
               <li>Open from Home Screen</li>
-            </ol>
+            </ul>
           </div>
 
-          <button class="btn" id="installBtn" type="button" disabled>
+          <button class="btn" id="installBtn" disabled>
             Install App
           </button>
         </div>
 
-      </div>
+        <!-- copyright moved INTO flow -->
+        <footer class="footer">© 2025 Chris Board</footer>
 
-      <footer class="footer">© 2025 Chris Board</footer>
+      </div>
     </section>
 
     <!-- LOGIN SCREEN -->
@@ -99,16 +127,15 @@
             <input type="password">
           </label>
 
-          <button class="btn" type="button">Login</button>
+          <button class="btn">Login</button>
         </div>
 
-      </div>
+        <!-- copyright -->
+        <footer class="footer">© 2025 Chris Board</footer>
 
-      <footer class="footer">© 2025 Chris Board</footer>
+      </div>
     </section>
 
   </main>
-
-  <script src="app.js"></script>
 </body>
 </html>
