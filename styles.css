@@ -1,4 +1,6 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 html, body {
   height: 100%;
@@ -9,19 +11,19 @@ html, body {
 body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   background: #F3F4F6;
-  touch-action: none;
+  touch-action: none; /* no zoom */
   -webkit-font-smoothing: antialiased;
 }
 
-/* Background: lower contrast + bigger objects */
+/* App background */
 .app {
   position: fixed;
   inset: 0;
   background:
     url("assets/bg/cbbackground.svg") repeat,
     #F3F4F6;
-  background-size: 480px auto;      /* larger objects */
-  background-blend-mode: multiply;  /* lower contrast */
+  background-size: 480px auto;       /* larger objects */
+  background-blend-mode: multiply;   /* lower contrast */
 }
 
 /* Screens */
@@ -32,10 +34,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 34px 18px 96px;
+  padding: 48px 18px 96px; /* avoid logo clipping */
 }
 
-/* Content */
+/* Content container */
 .content {
   width: 100%;
   max-width: 440px;
@@ -46,17 +48,19 @@ body {
 }
 
 /* Logo */
-.logoWrap { width: 100%; }
+.logoWrap {
+  width: 100%;
+}
 
 .logo {
   width: 100%;
-  max-height: 108px;
+  max-height: 96px;
   height: auto;
   object-fit: contain;
   display: block;
 }
 
-/* Note */
+/* Install note */
 .installNote {
   margin: 2px 0 12px;
   font-size: 13px;
@@ -77,53 +81,88 @@ body {
   backdrop-filter: blur(3px);
 }
 
+/* Card title */
 .cardTitle {
   margin: 0 0 14px;
   text-align: center;
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.35px;
+  color: rgba(17,24,39,.95);
 }
 
 /* Instruction box */
 .instructionBox {
-  background: rgba(243,244,246,.9);
+  background: rgba(243,244,246,.85);
   border: 1px solid rgba(17,24,39,.08);
   border-radius: 14px;
   padding: 14px;
 }
 
-/* Steps with light divider */
+/* Steps list */
 .steps {
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.4;
   color: rgba(55,65,81,.95);
+  counter-reset: step;
 }
 
+/* Step row – equal height blocks */
 .steps li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 0;
+  gap: 10px;
+
+  height: 52px;                     /* fixed equal block */
+  padding: 0 12px;
+
   border-bottom: 1px solid rgba(17,24,39,.06);
+  counter-increment: step;
 }
 
 .steps li:last-child {
   border-bottom: none;
 }
 
-/* Vector icons */
+/* Step number (left) */
+.steps li::before {
+  content: counter(step);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(17,24,39,.08);
+  color: rgba(17,24,39,.75);
+  font-size: 11px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* Step text (proper middle column) */
+.stepText {
+  flex: 1;                          /* takes middle space */
+  text-align: left;
+  font-size: 14px;
+  color: rgba(55,65,81,.95);
+}
+
+/* Vector icon (right) */
 .icon {
   width: 22px;
   height: 22px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgba(17,24,39,.7);
+  margin-left: auto;                /* push to right */
   flex-shrink: 0;
+  color: rgba(17,24,39,.7);
 }
 
 .icon svg {
@@ -174,17 +213,11 @@ input:focus {
   margin-top: 12px;
 }
 
-.btn:disabled { opacity: .45; }
-
-/* Hint */
-.hint{
-  margin: 10px 0 0;
-  font-size: 12px;
-  color: rgba(107,114,128,.8);
-  text-align: center;
+.btn:disabled {
+  opacity: .45;
 }
 
-/* Footer below card with big gap */
+/* Footer below card */
 .footer {
   margin-top: 48px;
   font-size: 12px;
