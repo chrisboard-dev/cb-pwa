@@ -21,7 +21,7 @@
   <main class="app">
 
     <!-- INSTALL SCREEN -->
-    <section id="installScreen" class="screen">
+    <section id="installScreen" class="screen" aria-hidden="true">
       <div class="content">
 
         <div class="logoWrap">
@@ -39,7 +39,7 @@
               <li>
                 <span class="icon">
                   <!-- Safari -->
-                  <svg viewBox="0 0 24 24">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
                     <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
                     <path d="M12 6l2 6-6 2z" fill="currentColor"/>
                   </svg>
@@ -50,7 +50,7 @@
               <li>
                 <span class="icon">
                   <!-- Share -->
-                  <svg viewBox="0 0 24 24">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 16V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
                     <path d="M8 8l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
                     <rect x="6" y="12" width="12" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -62,7 +62,7 @@
               <li>
                 <span class="icon">
                   <!-- Plus -->
-                  <svg viewBox="0 0 24 24">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                   </svg>
                 </span>
@@ -72,7 +72,7 @@
               <li>
                 <span class="icon">
                   <!-- App -->
-                  <svg viewBox="0 0 24 24">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
                     <rect x="5" y="5" width="14" height="14" rx="3"
                           fill="none" stroke="currentColor" stroke-width="1.6"/>
                   </svg>
@@ -95,19 +95,18 @@
             </ul>
           </div>
 
-          <button class="btn" id="installBtn" disabled>
-            Install App
-          </button>
+          <button class="btn" id="installBtn" type="button" disabled>Install App</button>
+          <p class="hint" id="installHint" hidden>Install prompt not available yet. Refresh in Chrome on Android.</p>
         </div>
 
-        <!-- copyright moved INTO flow -->
+        <!-- Copyright below card with large gap -->
         <footer class="footer">© 2025 Chris Board</footer>
 
       </div>
     </section>
 
     <!-- LOGIN SCREEN -->
-    <section id="loginScreen" class="screen">
+    <section id="loginScreen" class="screen" aria-hidden="true">
       <div class="content">
 
         <div class="logoWrap">
@@ -119,23 +118,82 @@
 
           <label class="field">
             <span>Username</span>
-            <input type="text">
+            <input type="text" autocomplete="username">
           </label>
 
           <label class="field">
             <span>Password</span>
-            <input type="password">
+            <input type="password" autocomplete="current-password">
           </label>
 
-          <button class="btn">Login</button>
+          <button class="btn" type="button">Login</button>
         </div>
 
-        <!-- copyright -->
         <footer class="footer">© 2025 Chris Board</footer>
-
       </div>
     </section>
 
   </main>
+
+  <!-- ✅ INLINE ROUTING SCRIPT (so it always works) -->
+  <script>
+    const installScreen = document.getElementById('installScreen');
+    const loginScreen = document.getElementById('loginScreen');
+    const iosCard = document.getElementById('iosCard');
+    const androidCard = document.getElementById('androidCard');
+    const installBtn = document.getElementById('installBtn');
+    const installHint = document.getElementById('installHint');
+
+    const ua = navigator.userAgent || "";
+    const isIOS = /iphone|ipad|ipod/i.test(ua);
+    const isAndroid = /android/i.test(ua);
+    const isMobile = isIOS || isAndroid;
+
+    const isStandalone =
+      (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+      (window.navigator.standalone === true);
+
+    function showInstall(){
+      installScreen.style.display = 'flex';
+      installScreen.setAttribute('aria-hidden','false');
+      loginScreen.style.display = 'none';
+      loginScreen.setAttribute('aria-hidden','true');
+
+      iosCard.hidden = !isIOS;
+      androidCard.hidden = !isAndroid;
+    }
+
+    function showLogin(){
+      installScreen.style.display = 'none';
+      installScreen.setAttribute('aria-hidden','true');
+      loginScreen.style.display = 'flex';
+      loginScreen.setAttribute('aria-hidden','false');
+    }
+
+    // Mobile browser => install screen
+    // Standalone or desktop => login screen
+    if (isMobile && !isStandalone) showInstall();
+    else showLogin();
+
+    // Android install prompt
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) installBtn.disabled = false;
+      if (installHint) installHint.hidden = true;
+    });
+
+    installBtn && installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) {
+        if (installHint) installHint.hidden = false;
+        return;
+      }
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.disabled = true;
+    });
+  </script>
 </body>
 </html>
